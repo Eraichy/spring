@@ -1,7 +1,7 @@
 package application.models;
 
 
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 //import javax.persistence.*;
 //
 //@Entity
@@ -11,7 +11,7 @@ public class RequestModel {
 //    @Id
 //    @Column(name="id")
 //    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     private String requestUrl;
 
@@ -21,14 +21,14 @@ public class RequestModel {
 
     public RequestModel() { }
 
-    public RequestModel(String id, String requestUrl, String requestStartTime, String requestEndTime) {
+    public RequestModel(int id, String requestUrl, String requestStartTime, String requestEndTime) {
         this.id = id;
         this.requestUrl = requestUrl;
         this.requestStartTime = requestStartTime;
         this.requestEndTime = requestEndTime;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

@@ -7,45 +7,19 @@
         <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
     </head>
     <body ng-app="myApp">
-        <a href="/"> Main </a>
-        <a href="/Charts"> Charts </a>
-        <a href="/Configuration"> Configuration </a>
-        <a href="/DataBase"> DataBase </a>
-        <div ng-view></div>
-
-        <div class="generic-container" ng-controller="HttpBinRequestController as bin_controller">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <span class="lead">List of Requests</span>
+        <div class="generic-container">
+            <nav class="navbar navbar-default">
+                <div>
+                    <button type="button" class="btn btn-success btn-lg" href="#" ng-href="/Index.jsp"> Main </button>
+                    <button type="button" class="btn btn-success btn-lg" href="#" ng-href="/Charts.jsp"> Charts </button>
+                    <button type="button" class="btn btn-success btn-lg" href="#" ng-href="/Configuration.jsp"> Configuration </button>
+                    <button type="button" class="btn btn-success btn-lg" href="#" ng-href="/DataBase.jsp"> DataBase </button>
                 </div>
-                <div class="tablecontainer">
-                    <%--<table class="table table-hover">--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th>ID</th>--%>
-                            <%--<th>Request Url</th>--%>
-                            <%--<th>Request Start Time</th>--%>
-                            <%--<th>Request End Time</th>--%>
-                            <%--<th width="20%"></th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
-                        <%--<tr ng-repeat="req in bin_controller.requests">--%>
-                            <%--<td><span ng-bind="req.id"></span></td>--%>
-                            <%--<td><span ng-bind="req.requestUrl"></span></td>--%>
-                            <%--<td><span ng-bind="req.requestStartTime"></span></td>--%>
-                            <%--<td><span ng-bind="req.requestEndTime"></span></td>--%>
-                        <%--</tr>--%>
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                </div>
-            </div>
+            </nav>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+        <%--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>--%>
         <script src="<c:url value='/static/js/app.js' />"></script>
-        <script src="<c:url value='/static/js/service/HttpBinRequestService.js' />"></script>
-        <script src="<c:url value='/static/js/controllers/HttpBinRequestController.js' />"></script>
     </body>
 </html>

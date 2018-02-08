@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.util.List;
 import java.util.Random;
 
 import static application.helpers.ApplicationProperties.getProperty;
@@ -40,7 +41,7 @@ public class HttpBinServiceImpl implements HttpBinService {
         } catch (IOException ignored) {}
 
         request.setRequestEndTime(Instant.now().toString());
-        requestsRepository.save(request);
+        requestsRepository.addRequest(request);
         return request;
     }
 
@@ -62,12 +63,12 @@ public class HttpBinServiceImpl implements HttpBinService {
         } catch (IOException ignored) {}
 
         request.setRequestEndTime(Instant.now().toString());
-        requestsRepository.save(request);
+        requestsRepository.addRequest(request);
         return request;
     }
 
     @Override
-    public Iterable<RequestModel> getRequests() {
+    public List<RequestModel> getRequests() {
         return requestsRepository.findAll();
     }
 
