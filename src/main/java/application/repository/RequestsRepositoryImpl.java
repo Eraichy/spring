@@ -1,6 +1,6 @@
 package application.repository;
 
-import application.models.RequestModel;
+import application.entities.RequestEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,14 +17,14 @@ public class RequestsRepositoryImpl implements RequestsRepository {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public void addRequest(RequestModel request) {
+    public void addRequest(RequestEntity request) {
         jdbcTemplate.update(
                 "INSERT INTO requests (requestUrl, requestStartTime, requestEndTime) VALUES (?, ?, ?)",
                 request.getRequestUrl(), request.getRequestStartTime(), request.getRequestEndTime());
     }
 
     @Override
-    public List<RequestModel> findAll() {
-        return jdbcTemplate.query("SELECT * FROM requests", new BeanPropertyRowMapper(RequestModel.class));
+    public List<RequestEntity> findAll() {
+        return jdbcTemplate.query("SELECT * FROM requests", new BeanPropertyRowMapper(RequestEntity.class));
     }
 }

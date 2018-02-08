@@ -1,14 +1,14 @@
 package application.services;
 
-import application.models.RequestModel;
+import application.entities.RequestEntity;
 
 import java.util.List;
 
 public interface HttpBinService {
 
-    RequestModel getStatusOk();
+    RequestEntity getStatusOk();
 
-    RequestModel randomDelay();
+    RequestEntity randomDelay();
 
-    List<RequestModel> getRequests();
+    List<RequestEntity> getRequests();
 }

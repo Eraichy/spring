@@ -1,13 +1,13 @@
 package application.repository;
 
-import application.models.RequestModel;
+import application.entities.RequestEntity;
 
 import java.util.List;
 
 public interface RequestsRepository {
 
-    void addRequest(RequestModel request);
+    void addRequest(RequestEntity request);
 
-    List<RequestModel> findAll();
+    List<RequestEntity> findAll();
 
 }

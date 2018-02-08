@@ -1,6 +1,6 @@
 package application.services;
 
-import application.models.RequestModel;
+import application.entities.RequestEntity;
 import application.repository.RequestsRepository;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.URIException;
@@ -23,11 +23,11 @@ public class HttpBinServiceImpl implements HttpBinService {
 
     private static final String HTTP_BIN_URL = getProperty("http.bin.url");
 
-    public RequestModel getStatusOk() {
+    public RequestEntity getStatusOk() {
         HttpClient client = new HttpClient();
         GetMethod getMethod = new GetMethod(HTTP_BIN_URL + "/status/200");
 
-        RequestModel request = new RequestModel();
+        RequestEntity request = new RequestEntity();
         try {
             request.setRequestUrl(getMethod.getURI().toString());
         } catch (URIException e) {
@@ -45,11 +45,11 @@ public class HttpBinServiceImpl implements HttpBinService {
         return request;
     }
 
-    public RequestModel randomDelay() {
+    public RequestEntity randomDelay() {
         HttpClient client = new HttpClient();
         GetMethod getMethod = getRandomDelayMethod();
 
-        RequestModel request = new RequestModel();
+        RequestEntity request = new RequestEntity();
         try {
             request.setRequestUrl(getMethod.getURI().toString());
         } catch (URIException e) {
@@ -68,7 +68,7 @@ public class HttpBinServiceImpl implements HttpBinService {
     }
 
     @Override
-    public List<RequestModel> getRequests() {
+    public List<RequestEntity> getRequests() {
         return requestsRepository.findAll();
     }
 
