@@ -1,8 +1,8 @@
-package application.controllers;
+package api.controllers;
 
-import application.entities.RequestEntity;
-import application.services.HttpBinServiceImpl;
-import application.services.HttpBinService;
+import api.entities.RequestEntity;
+import api.services.HttpBinServiceImpl;
+import api.services.HttpBinService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

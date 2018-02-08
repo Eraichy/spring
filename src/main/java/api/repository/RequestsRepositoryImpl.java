@@ -1,6 +1,6 @@
-package application.repository;
+package api.repository;
 
-import application.entities.RequestEntity;
+import api.entities.RequestEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

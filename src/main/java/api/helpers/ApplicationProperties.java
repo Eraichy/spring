@@ -1,4 +1,4 @@
-package application.helpers;
+package api.helpers;
 
 import java.io.InputStream;
 import java.util.Properties;

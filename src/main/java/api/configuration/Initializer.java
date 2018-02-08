@@ -1,4 +1,4 @@
-package application.configuration;
+package api.configuration;
 
 import javax.servlet.Filter;
 

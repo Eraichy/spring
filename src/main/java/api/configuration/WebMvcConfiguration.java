@@ -1,17 +1,14 @@
-package application.configuration;
+package api.configuration;
 
-//import application.repository.RequestsRepository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "application")
-//@EnableMongoRepositories(basePackageClasses=RequestsRepository.class)
+@ComponentScan(basePackages = "api")
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override

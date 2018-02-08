@@ -1,4 +1,4 @@
-package application.entities;
+package api.entities;
 
 public class RequestEntity {
     private int id;

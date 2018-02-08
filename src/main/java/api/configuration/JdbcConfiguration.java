@@ -1,4 +1,4 @@
-package application.configuration;
+package api.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = "application")
+@ComponentScan(basePackages = "api")
 @PropertySource(value = { "classpath:application.properties" })
 public class JdbcConfiguration {
 

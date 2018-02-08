@@ -1,6 +1,6 @@
-package application.repository;
+package api.repository;
 
-import application.entities.RequestEntity;
+import api.entities.RequestEntity;
 
 import java.util.List;
 
