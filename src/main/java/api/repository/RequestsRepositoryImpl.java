@@ -27,4 +27,24 @@ public class RequestsRepositoryImpl implements RequestsRepository {
     public List<RequestEntity> findAll() {
         return jdbcTemplate.query("SELECT * FROM requests", new BeanPropertyRowMapper(RequestEntity.class));
     }
+
+    @Override
+    public List<RequestEntity> findAllGetOkRequests() {
+        return jdbcTemplate.query("SELECT * FROM requests WHERE requestUrl LIKE '%status/200'",
+                new BeanPropertyRowMapper(RequestEntity.class));
+    }
+
+    @Override
+    public List<RequestEntity> findAllRandomDelayRequests() {
+        return jdbcTemplate.query("SELECT * FROM requests WHERE requestUrl LIKE '%delay%'",
+                new BeanPropertyRowMapper(RequestEntity.class));
+    }
+
+    @Override
+    public RequestEntity findByStartTime(String startTime) {
+        return  (RequestEntity)jdbcTemplate
+                .queryForObject(
+                        String.format("SELECT * FROM requests WHERE requests.requestStartTime LIKE '%s'", startTime),
+                new BeanPropertyRowMapper(RequestEntity.class));
+    }
 }

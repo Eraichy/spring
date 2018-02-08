@@ -42,7 +42,7 @@ public class HttpBinServiceImpl implements HttpBinService {
 
         request.setRequestEndTime(Instant.now().toString());
         requestsRepository.addRequest(request);
-        return request;
+        return requestsRepository.findByStartTime(request.getRequestStartTime());
     }
 
     public RequestEntity randomDelay() {
@@ -64,7 +64,7 @@ public class HttpBinServiceImpl implements HttpBinService {
 
         request.setRequestEndTime(Instant.now().toString());
         requestsRepository.addRequest(request);
-        return request;
+        return requestsRepository.findByStartTime(request.getRequestStartTime());
     }
 
     @Override

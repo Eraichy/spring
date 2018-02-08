@@ -10,4 +10,10 @@ public interface RequestsRepository {
 
     List<RequestEntity> findAll();
 
+    List<RequestEntity> findAllGetOkRequests();
+
+    List<RequestEntity> findAllRandomDelayRequests();
+
+    RequestEntity findByStartTime(String startTime);
+
 }
