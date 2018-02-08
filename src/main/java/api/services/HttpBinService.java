@@ -11,4 +11,6 @@ public interface HttpBinService {
     RequestEntity randomDelay();
 
     List<RequestEntity> getRequests();
+
+    void getStatusOkLoad(int rate, int period);
 }

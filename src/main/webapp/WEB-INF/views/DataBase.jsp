@@ -9,25 +9,32 @@
 <body ng-app="myApp">
 <div class="generic-container" ng-controller="HttpBinRequestController as bin_controller">
     <div class="panel panel-default">
-        <div class="panel-heading"><span class="lead">List of Requests</span></div>
+        <div class="panel-heading">
+            <span class="lead">List of Requests</span>
+        </div>
         <div class="tablecontainer">
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Request Url</th>
-                    <th>Request Start Time</th>
-                    <th>Request End Time</th>
-                    <th width="20%"></th>
-                </tr>
+                    <tr>
+                        <th width="5%"></th>
+                        <th>ID</th>
+                        <th>Request Url</th>
+                        <th>Request Start Time</th>
+                        <th>Request End Time</th>
+                        <th>Execution Time, ms</th>
+                        <th width="5%"></th>
+                    </tr>
                 </thead>
+
                 <tbody>
-                <tr ng-repeat="req in bin_controller.requests">
-                    <td><span ng-bind="req.id"></span></td>
-                    <td><span ng-bind="req.requestUrl"></span></td>
-                    <td><span ng-bind="req.requestStartTime"></span></td>
-                    <td><span ng-bind="req.requestEndTime"></span></td>
-                </tr>
+                    <tr ng-repeat="request in bin_controller.requests">
+                        <th width="5%"></th>
+                        <td><span ng-bind="request.id"></span></td>
+                        <td><span ng-bind="request.requestUrl"></span></td>
+                        <td><span ng-bind="request.requestStartTime"></span></td>
+                        <td><span ng-bind="request.requestEndTime"></span></td>
+                        <td><span ng-bind="getDiff(request.requestStartTime, request.requestEndTime)"></span></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

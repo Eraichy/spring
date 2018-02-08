@@ -1,20 +1,15 @@
 'use strict';
 
-angular.module('myApp').factory(
-    'HttpBinRequestService',
-    [
-        '$http', '$q', function($http, $q)
-    {
+angular.module('myApp').factory('HttpBinRequestService', [ '$http', '$q', function($http, $q) {
         var REST_SERVICE_URI = 'http://localhost:8080/httpBin';
 
-        // var factory = {
-        //     getStatusOk: getStatusOk,
-        //     randomDelay: randomDelay
-        // };
-        //
-        // return factory;
+        return{
+            getStatusOk: getStatusOk,
+            getRequests: getRequests,
+            randomDelay: randomDelay
+        };
 
-        $http.getStatusOk = function getStatusOk() {
+        function getStatusOk() {
             var deferred = $q.defer();
             $http.get(REST_SERVICE_URI + '/getStatusOk')
                 .then(
@@ -27,9 +22,9 @@ angular.module('myApp').factory(
                     }
                 );
             return deferred.promise;
-        };
+        }
 
-        $http.randomDelay = function randomDelay() {
+        function randomDelay() {
             var deferred = $q.defer();
             $http.get(REST_SERVICE_URI + '/randomDelay')
                 .then(
@@ -43,6 +38,19 @@ angular.module('myApp').factory(
                 );
             return deferred.promise;
         }
-    }
-    ]
-);
+
+        function getRequests() {
+            var deferred = $q.defer();
+            $http.get(REST_SERVICE_URI + '/getRequests')
+                .then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse){
+                        console.error('Error while getRequests');
+                        deferred.reject(errResponse);
+                    }
+                );
+            return deferred.promise;
+        }
+}]);
