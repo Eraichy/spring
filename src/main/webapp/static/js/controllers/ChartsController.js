@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp').controller('ChartsController', [
-    "HttpBinRequestService",
-    function(HttpBinRequestService) {
+    "HttpBinRequestService", '$filter',
+    function(HttpBinRequestService, $filter) {
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawStatusOkChart);
@@ -12,7 +12,7 @@ angular.module('myApp').controller('ChartsController', [
             HttpBinRequestService.getAllGetOkRequests()
                 .then(
                     function(requests) {
-                        drawChart(requests, 'Request status/200 Performance', 'status_ok_chart');
+                        drawChart(requests, 'Request status/200 Performance', 'status_ok_chart', ['blue','#3366cc']);
                     }
                 );
         }
@@ -21,18 +21,18 @@ angular.module('myApp').controller('ChartsController', [
             HttpBinRequestService.getAllDelayRequests()
                 .then(
                     function(requests) {
-                        drawChart(requests, 'Request delay/n Performance', 'delay_chart');
+                        drawChart(requests, 'Request delay/n Performance', 'delay_chart', ['red','#004411']);
                     }
                 );
         }
 
-        function drawChart(requests, chartName, chartId) {
+        function drawChart(requests, chartName, chartId, colors) {
             var resultView = [['Start Time', 'Execution Time, ms']];
             for (var item in requests) {
                 resultView.push([
-                    requests[item]['requestStartTime'],
+                    $filter('date')(new Date(requests[item]['requestStartTime']), 'dd.MM.yyyy HH:mm:ss.sss'),
                     new Date(requests[item]['requestEndTime']).getTime() -
-                    new Date(requests[item]['requestStartTime']).getTime()
+                        new Date(requests[item]['requestStartTime']).getTime()
                 ]);
             }
 
@@ -40,8 +40,9 @@ angular.module('myApp').controller('ChartsController', [
 
             var options = {
                 title: chartName,
-                hAxis: {title: 'Execution Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
+                hAxis: { title: 'Execution Date',  titleTextStyle: { color: '#333' } },
+                vAxis: { minValue: 0 },
+                colors: colors
             };
 
             var chart = new google.visualization.AreaChart(document.getElementById(chartId));

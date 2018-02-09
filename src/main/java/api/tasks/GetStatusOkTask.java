@@ -1,4 +1,4 @@
-package api.schedulers;
+package api.tasks;
 
 import api.services.HttpBinService;
 

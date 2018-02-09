@@ -1,7 +1,9 @@
 package api.controllers;
 
 import api.entities.RequestEntity;
-import api.schedulers.GetStatusOkTask;
+import api.scheduler.TaskScheduler;
+import api.tasks.DelayTask;
+import api.tasks.GetStatusOkTask;
 import api.services.HttpBinServiceImpl;
 import api.services.HttpBinService;
 
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,7 +25,7 @@ public class HttpBinController {
     private HttpBinService httpBinService = new HttpBinServiceImpl();
 
     @Autowired
-    private ThreadPoolTaskScheduler scheduler;
+    private TaskScheduler scheduler;
 
     @RequestMapping("/getStatusOk")
     public ResponseEntity<RequestEntity> getStatusOk() {
@@ -50,9 +53,20 @@ public class HttpBinController {
     }
 
     @RequestMapping("/getStatusOkLoad")
-    public ResponseEntity<List<RequestEntity>> getStatusOkLoad() {
-        scheduler.scheduleAtFixedRate(new GetStatusOkTask(httpBinService), 20);
-//        httpBinService.getStatusOkLoad(100, 2000);
-        return new ResponseEntity<>(httpBinService.getRequests(), HttpStatus.OK);
+    public ResponseEntity getStatusOkLoad(@RequestParam("requestsPerMin") int requestsPerMin) {
+        scheduler.scheduleAtFixedRate(new GetStatusOkTask(httpBinService), 60000 / requestsPerMin);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping("/getDelayLoad")
+    public ResponseEntity getDelayLoad(@RequestParam("requestsPerMin") int requestsPerMin) {
+        scheduler.scheduleAtFixedRate(new DelayTask(httpBinService), 60000 / requestsPerMin);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping("/stopTasks")
+    public ResponseEntity stopTasks() {
+        scheduler.stopTasks();
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

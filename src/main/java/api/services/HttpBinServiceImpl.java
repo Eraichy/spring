@@ -2,21 +2,15 @@ package api.services;
 
 import api.entities.RequestEntity;
 import api.repository.RequestsRepository;
-import api.schedulers.GetStatusOkTask;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.URIException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Random;
 
 import static api.helpers.ApplicationProperties.getProperty;
