@@ -79,6 +79,16 @@ public class HttpBinServiceImpl implements HttpBinService {
     }
 
     @Override
+    public List<RequestEntity> getAllGetOkRequests() {
+        return requestsRepository.findAllGetOkRequests();
+    }
+
+    @Override
+    public List<RequestEntity> getAllDelayRequests() {
+        return requestsRepository.findAllDelayRequests();
+    }
+
+    @Override
     public void getStatusOkLoad(int rate, int period) {
 //        Queue<RequestEntity> requestsQueue = new PriorityQueue<>();
 //        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();

@@ -35,7 +35,7 @@ public class RequestsRepositoryImpl implements RequestsRepository {
     }
 
     @Override
-    public List<RequestEntity> findAllRandomDelayRequests() {
+    public List<RequestEntity> findAllDelayRequests() {
         return jdbcTemplate.query("SELECT * FROM requests WHERE requestUrl LIKE '%delay%'",
                 new BeanPropertyRowMapper(RequestEntity.class));
     }

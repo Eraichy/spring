@@ -12,7 +12,7 @@ public interface RequestsRepository {
 
     List<RequestEntity> findAllGetOkRequests();
 
-    List<RequestEntity> findAllRandomDelayRequests();
+    List<RequestEntity> findAllDelayRequests();
 
     RequestEntity findByStartTime(String startTime);
 

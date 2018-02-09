@@ -39,6 +39,16 @@ public class HttpBinController {
         return new ResponseEntity<>(httpBinService.getRequests(), HttpStatus.OK);
     }
 
+    @RequestMapping("/getAllGetOkRequests")
+    public ResponseEntity<List<RequestEntity>> getAllGetOkRequests() {
+        return new ResponseEntity<>(httpBinService.getAllGetOkRequests(), HttpStatus.OK);
+    }
+
+    @RequestMapping("/getAllDelayRequests")
+    public ResponseEntity<List<RequestEntity>> getAllDelayRequests() {
+        return new ResponseEntity<>(httpBinService.getAllDelayRequests(), HttpStatus.OK);
+    }
+
     @RequestMapping("/getStatusOkLoad")
     public ResponseEntity<List<RequestEntity>> getStatusOkLoad() {
         scheduler.scheduleAtFixedRate(new GetStatusOkTask(httpBinService), 20);

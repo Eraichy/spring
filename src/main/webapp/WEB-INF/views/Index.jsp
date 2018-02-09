@@ -19,7 +19,6 @@
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
-        <%--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>--%>
         <script src="<c:url value='/static/js/app.js' />"></script>
     </body>
 </html>

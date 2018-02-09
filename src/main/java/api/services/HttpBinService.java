@@ -12,5 +12,9 @@ public interface HttpBinService {
 
     List<RequestEntity> getRequests();
 
+    List<RequestEntity> getAllGetOkRequests();
+
+    List<RequestEntity> getAllDelayRequests();
+
     void getStatusOkLoad(int rate, int period);
 }
