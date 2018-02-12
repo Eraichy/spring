@@ -10,7 +10,6 @@ import api.services.HttpBinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,16 +25,6 @@ public class HttpBinController {
 
     @Autowired
     private TaskScheduler scheduler;
-
-    @RequestMapping("/getStatusOk")
-    public ResponseEntity<RequestEntity> getStatusOk() {
-        return new ResponseEntity<>(httpBinService.getStatusOk(), HttpStatus.OK);
-    }
-
-    @RequestMapping("/randomDelay")
-    public ResponseEntity<RequestEntity> randomDelay() {
-        return new ResponseEntity<>(httpBinService.randomDelay(), HttpStatus.OK);
-    }
 
     @RequestMapping("/getRequests")
     public ResponseEntity<List<RequestEntity>> getRequests() {

@@ -1,8 +1,9 @@
-'use strict';
-
 angular.module('myApp').controller('HttpBinRequestController', [
-    '$scope', 'HttpBinRequestService', function($scope, HttpBinRequestService) {
+    '$scope', 'HttpBinRequestService', 'ConfigurationService',
+    function($scope, HttpBinRequestService, ConfigurationService) {
         var self = this;
+        $scope.config = ConfigurationService;
+        $scope.$broadcast('restorestate');
 
         self.request = {
             id: null,
@@ -28,7 +29,7 @@ angular.module('myApp').controller('HttpBinRequestController', [
         }
 
         $scope.getStatusOk = function getStatusOk(){
-            HttpBinRequestService.getStatusOk()
+            HttpBinRequestService.getStatusOk($scope.config.model.rpmStatusOk)
                 .then(
                     function(d) {
                         self.request = d;
@@ -40,13 +41,25 @@ angular.module('myApp').controller('HttpBinRequestController', [
         };
 
         $scope.randomDelay = function randomDelay(){
-            HttpBinRequestService.randomDelay()
+            HttpBinRequestService.randomDelay($scope.config.model.rpmDelay)
                 .then(
                     function(d) {
                         self.request = d;
                     },
                     function(errResponse){
                         console.error('Error while randomDelay');
+                    }
+                );
+        };
+
+        $scope.stopTasks = function stopTasks(){
+            HttpBinRequestService.stopTasks()
+                .then(
+                    function(d) {
+                        self.request = d;
+                    },
+                    function(errResponse){
+                        console.error('Error while stopTasks');
                     }
                 );
         };

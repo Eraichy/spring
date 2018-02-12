@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('myApp').controller('ChartsController', [
     "HttpBinRequestService", '$filter',
     function(HttpBinRequestService, $filter) {

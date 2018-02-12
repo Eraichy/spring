@@ -82,13 +82,6 @@ public class HttpBinServiceImpl implements HttpBinService {
         return requestsRepository.findAllDelayRequests();
     }
 
-    @Override
-    public void getStatusOkLoad(int rate, int period) {
-//        Queue<RequestEntity> requestsQueue = new PriorityQueue<>();
-//        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
-
-    }
-
     private GetMethod getRandomDelayMethod()
     {
         Random random = new Random();

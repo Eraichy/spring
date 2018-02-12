@@ -1,0 +1,15 @@
+DataBase creation:
+
+mysql> create database http_bin_requests_db;
+mysql> create user 'springuser'@'localhost' identified by 'ThePassword';
+mysql> grant all on http_bin_requests_db.* to 'springuser'@'localhost';
+
+
+Table creation:
+
+CREATE TABLE `http_bin_requests_db`.`requests` (
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`requestUrl` VARCHAR(45) NULL,
+`requestStartTime` VARCHAR(45) NULL,
+`requestEndTime` VARCHAR(45) NULL,
+PRIMARY KEY (`id`));

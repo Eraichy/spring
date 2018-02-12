@@ -16,12 +16,12 @@ body, .form-control{
 	color:red;
 }
 
-.formcontainer{
+.form-container{
 	background-color: #DAE8E8;
 	padding: 20px;
 }
 
-.tablecontainer{
+.table-container{
 	padding-left: 20px;
 }
 

@@ -8,7 +8,8 @@ angular.module('myApp').factory('HttpBinRequestService', [ '$http', '$q', functi
         getAllGetOkRequests: getAllGetOkRequests,
         getRequests: getRequests,
         getStatusOk: getStatusOk,
-        randomDelay: randomDelay
+        randomDelay: randomDelay,
+        stopTasks: stopTasks
     };
 
     function getAllDelayRequests() {
@@ -62,10 +63,10 @@ angular.module('myApp').factory('HttpBinRequestService', [ '$http', '$q', functi
         return deferred.promise;
     }
 
-    function getStatusOk() {
+    function getStatusOk(rpm) {
         var deferred = $q.defer();
 
-        $http.get(REST_SERVICE_URI + '/getStatusOk')
+        $http.get(REST_SERVICE_URI + '/getStatusOkLoad?requestsPerMin=' + rpm)
             .then(
                 function (response) {
                     deferred.resolve(response.data);
@@ -79,16 +80,33 @@ angular.module('myApp').factory('HttpBinRequestService', [ '$http', '$q', functi
         return deferred.promise;
     }
 
-    function randomDelay() {
+    function randomDelay(rpm) {
         var deferred = $q.defer();
 
-        $http.get(REST_SERVICE_URI + '/randomDelay')
+        $http.get(REST_SERVICE_URI + '/getDelayLoad?requestsPerMin=' + rpm)
             .then(
                 function (response) {
                     deferred.resolve(response.data);
                 },
                 function(errResponse){
                     console.error('Error while randomDelay');
+                    deferred.reject(errResponse);
+                }
+            );
+
+        return deferred.promise;
+    }
+
+    function stopTasks() {
+        var deferred = $q.defer();
+
+        $http.get(REST_SERVICE_URI + '/stopTasks')
+            .then(
+                function (response) {
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    console.error('Error while stopTasks');
                     deferred.reject(errResponse);
                 }
             );

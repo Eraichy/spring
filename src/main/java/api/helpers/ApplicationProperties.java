@@ -3,7 +3,6 @@ package api.helpers;
 import java.io.InputStream;
 import java.util.Properties;
 
-
 public class ApplicationProperties {
 
     private static Properties environment;
@@ -19,10 +18,6 @@ public class ApplicationProperties {
         }
     }
 
-    /**
-     * @param propertyName - key of test property from in the property file
-     * @return - value of test option
-     */
     public static String getProperty(String propertyName){
         return environment.getProperty(propertyName);
     }
